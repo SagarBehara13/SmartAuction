@@ -27,13 +27,13 @@ class NavBar extends Component {
                     <div className='container'>
                         <div className='navbar-contain'>
                             <div className='brand-menu'>
-                                <div className='logo'><img src={logo} className="logo-app" alt="logo" /></div>
-                                <div className='app-name'>Smart Auction</div>
+                                <div className='logo'><a href="/home"><img src={logo} className="logo-app" alt="logo" /></a></div>
+                                <div className='app-name'><a href="/home">Smart Auction</a></div>
                             </div>
                             <div className='main-menu'>
-                                <div>Home</div>
-                                <div>listing</div>
-                                <div>Somename</div>
+                                <div><a href="/home">Home</a></div>
+                                <div><a href="/place-bid">listing</a></div>
+                                <div><a href="/place-bid">Somename</a></div>
                             </div>
                         </div>
                     </div>

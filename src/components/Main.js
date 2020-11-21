@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from "./navbar";
 import Home from "./Home";
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import PlaceABid from "./PlaceABid";
 
 class Main extends Component{
     render() {
@@ -18,10 +19,10 @@ class Main extends Component{
                 {/*                 charityRequests={this.state.charityRequests}*/}
                 {/*        />)}*/}
                 {/*/>*/}
-                {/*<Route*/}
-                {/*    path="/request"*/}
-                {/*    component={Request}*/}
-                {/*/>*/}
+                <Route
+                    path="/place-bid"
+                    component={PlaceABid}
+                />
                 {/*<Route*/}
                 {/*    path="/approve"*/}
                 {/*    component={Approve}*/}
