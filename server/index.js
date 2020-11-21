@@ -4,6 +4,8 @@ const express = require('express')
 const bodyParser= require('body-parser')
 const multer = require('multer')
 
+const verifyFileType = require('./middleware/verifyFileType')
+
 
 const app = express()
 
@@ -21,27 +23,42 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage, fileFilter: verifyFileType.imageFilter}).single('image')
 
 
-app.post('/upload', upload.single('image'), (req, res, next) => {
-  const file = req.file
+app.post('/upload', (req, res, next) => {
+  upload(req, res, err => {
+    const file = req.file
 
-  if (!file) return res.send({
-    success: false,
-    msg: 'No file.',
-    data: null
-  })
+    if (req.fileValidationError) return res.send({
+        success: false,
+        msg: 'Invalid file type.',
+        data: null
+      });
 
-  const imgFileName = req.file.originalname
-  const url = `${process.env.URL}${imgFileName}`
+    if (err instanceof multer.MulterError || err)
+      return res.send({
+        success: false,
+        msg: 'Error occured.',
+        data: null
+      });
 
-  return res.send({
-    success: true,
-    msg: 'Saved file.',
-    data: {
-      fileUrl: url
-    }
+    if (!file) return res.send({
+      success: false,
+      msg: 'No file.',
+      data: null
+    })
+
+    const imgFileName = req.file.originalname
+    const url = `${process.env.URL}${imgFileName}`
+
+    return res.send({
+      success: true,
+      msg: 'Saved file.',
+      data: {
+        fileUrl: url
+      }
+    })
   })
 })
 
