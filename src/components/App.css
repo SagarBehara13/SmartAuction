@@ -1,1 +1,78 @@
 /* Styles go here */
+.navbar-custom{
+    display: flex;
+    padding: 10px 20px 10px 20px;
+    background: black;
+    /*#84ceeb*/
+    /*#5ab9ea*/
+    /*#c1c8e4*/
+    /*#8860d0*/
+}
+.navbar-contain{
+    display: flex;
+    align-items: center;
+}
+.logo-app{
+    height: 40px;
+    width: 40px;
+    /*padding: 10px 20px 10px 20px;*/
+    /*padding: 10px;*/
+}
+.app-name{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;;
+    padding-left: 20px;
+    font-family: Georgia;
+}
+.brand-menu{
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.main-menu{
+    display: flex;
+    align-items: center;
+}
+.main-menu div{
+    padding: 0px 10px 0px 10px;
+    color: white;
+    cursor: pointer;
+}
+.main-menu div:hover{
+    color: #5ab9ea;
+}
+.banner{
+    height: 100vh;
+    width: 100vw;
+}
+.welcome{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.welcome-msg{
+    color: white;
+    font-size: 80px;
+    text-shadow: 1px 1px 5px black;
+    margin-top: -20px;
+}
+.welcome-container{
+    text-align: center;
+}
+.start-bidding{
+    background-color: #5ab9ea;
+    color: white;
+    font-size: 20px;
+    border:1px solid #5ab9ea;
+    padding: 5px 20px 5px 20px;
+    transition: 0.2s ease-in-out;
+}
+.start-bidding:hover{
+    background-color: transparent;
+    color: #5ab9ea;
+}
