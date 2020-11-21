@@ -10,6 +10,7 @@ class ProductRequest extends Component{
     
     async componentWillMount(){
         await this.loadWeb3()
+        await this.loadBlockchainData()
     }
 
     async loadWeb3() {
@@ -34,7 +35,7 @@ class ProductRequest extends Component{
         const networkData = Auction.networks[networkId]
     
         if(networkData){
-          const auction = web3.eth.Contract(Auction.abi, networkData.address)
+          const auction = new web3.eth.Contract(Auction.abi, networkData.address)
           this.setState({ auction })
     
           const productCount = await auction.methods.productsCount().call()
@@ -54,7 +55,7 @@ class ProductRequest extends Component{
         } else {
           window.alert("Auction contract is not deployed to detected network")
         }
-      }
+    }
 
     constructor(props){
         super(props)
@@ -106,18 +107,30 @@ class ProductRequest extends Component{
                 <h2 className="form-head">Add Object for auctioning</h2>
                 <Form onSubmit={(event) => {
                     event.preventDefault()
-                    const name = this.requestName.value
-                    const price = window.web3.utils.toWei(this.requestPrice.value.toString(), 'Ether') || 0
-                    const category = this.requestCategory.value
-                    const story = this.requestStory.value
-                    const image = this.requestImage.value
-
-                    //this.createRequest(name, price, category, story, image)
+                    const name = this.productName.value
+                    const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether') || 0
+                    const ownerName = this.ownerName.value
+                    const contactNumber = this.contactNumber.value
+                    const objectImage = this.objectImage.value
+                    const startDate = this.startDate.value
+                    const endDate = this.endDate.value
+                    const category = this.category.value
+                    const description = this.description.value
+                    const shortDescription = this.shortDescription.value
+                    
+                    console.log(price, name, ownerName, contactNumber, objectImage, startDate, endDate, category, description, shortDescription);
+                    this.createProduct(price, name, ownerName, contactNumber, objectImage, startDate, endDate, category, description, shortDescription)
                 }} className="main-form">
                 <FormGroup>
                     <Label htmlFor="name" className="form-label">Object Name</Label>
                     <Input type="text" id="productName" name="name"
                         innerRef={(input) => this.productName = input} placeholder="Enter the object name here"
+                    />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="name" className="form-label">Base Price</Label>
+                    <Input type="text" id="productPrice" name="name"
+                        innerRef={(input) => this.productPrice = input} placeholder="Bids starting price"
                     />
                 </FormGroup>
                 <FormGroup>
@@ -147,7 +160,7 @@ class ProductRequest extends Component{
                 <FormGroup>
                     <Label htmlFor="name" className="form-label">Ending Period for Bids</Label>
                     <Input type="text" id="endDate" name="name"
-                        innerRef={(input) => this.productName = input} placeholder="Date when the auction halts"
+                        innerRef={(input) => this.endDate = input} placeholder="Date when the auction halts"
                     />
                 </FormGroup>
                 <FormGroup>

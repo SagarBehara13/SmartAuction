@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import ProductRequest from "./addProduct"
 import NavBar from "./navbar";
 import Home from "./Home";
 import Auction from '../abis/Auction.json'
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import PlaceBid from "./PlaceABid";
+import ProductRequest from "./addProduct"
+import AllProducts from "./listing"
+import AllBids from "./allBids"
+import HaltAuction from "./haltAuction"
+import FinishAuction from "./endAucion"
+
 
 class Main extends Component{
     
     async componentWillMount(){
         await this.loadWeb3()
+        //await this.loadBlockchainData()
     }
 
     async loadWeb3() {
@@ -34,7 +41,7 @@ class Main extends Component{
         const networkData = Auction.networks[networkId]
     
         if(networkData){
-          const auction = web3.eth.Contract(Auction.abi, networkData.address)
+          const auction = new web3.eth.Contract(Auction.abi, networkData.address)
           this.setState({ auction })
     
           const productCount = await auction.methods.productsCount().call()
@@ -43,9 +50,11 @@ class Main extends Component{
     
           for(var i = 1; i <= productCount; i++){
             const product = await auction.methods.products(i).call()
+            const productDetails = await auction.methods.productDetails(i).call()
             
             this.setState({
-              products: [...this.state.products, product]
+              products: [...this.state.products, product],
+              productDetails: [...this.state.productDetails, productDetails]
             })
           }
     
@@ -62,6 +71,7 @@ class Main extends Component{
           account : '',
           productCount: 0,
           products: [],
+          productDetails: [],
           loading: true
         }
     
@@ -109,6 +119,22 @@ class Main extends Component{
                     path="/host"
                     component={ProductRequest}
                 />
+                <Route
+                    path="/listing"
+                    component={AllProducts}
+                />
+                <Route
+                    path="/allBids"
+                    component={AllBids}
+                />
+                <Route
+                    path="/haltAuction"
+                    component={HaltAuction}
+                />
+                <Route
+                    path="/finishAuction"
+                    component={FinishAuction}
+                />
                 {/* <Route*/}
                 {/*    path="/explore"*/}
                 {/*    render={ props => (*/}
@@ -117,10 +143,10 @@ class Main extends Component{
                 {/*                 charityRequests={this.state.charityRequests}*/}
                 {/*        />)}*/}
                 {/*/>*/}
-                {/*<Route*/}
-                {/*    path="/request"*/}
-                {/*    component={Request}*/}
-                {/*/>*/}
+                <Route
+                    path="/PlaceBid"
+                    component={PlaceBid}
+                />
                 {/*<Route*/}
                 {/*    path="/approve"*/}
                 {/*    component={Approve}*/}
