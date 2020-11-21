@@ -1,1 +1,45 @@
 /* Styles go here */
+.navbar-custom{
+    display: flex;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 10px;
+    background: #5680e9;
+    /*#84ceeb*/
+    /*#5ab9ea*/
+    /*#c1c8e4*/
+    /*#8860d0*/
+}
+.navbar-contain{
+    display: flex;
+    align-items: center;
+}
+.logo-app{
+    height: 40px;
+    width: 40px;
+    /*padding: 10px 20px 10px 20px;*/
+    /*padding: 10px;*/
+}
+.app-name{
+    font-size: 15px;
+    font-weight: bold;
+    color: white;;
+    padding-left: 20px;
+    font-family: Georgia;
+}
+.brand-menu{
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.main-menu{
+    display: flex;
+    align-items: center;
+}
+.main-menu div{
+    padding: 0px 10px 0px 10px;
+    color: white;
+    cursor: pointer;
+}
+.main-menu div:hover{
+    color: #5ab9ea;
+}
