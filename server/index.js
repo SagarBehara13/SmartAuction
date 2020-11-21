@@ -34,8 +34,7 @@ app.post('/upload', upload.single('image'), (req, res, next) => {
   })
 
   const imgFileName = req.file.originalname
-  const url = `${process.env.URL}/uploads/${imgFileName}`
-  console.log(process.env.URL)
+  const url = `${process.env.URL}${imgFileName}`
 
   return res.send({
     success: true,
