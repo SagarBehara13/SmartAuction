@@ -6,7 +6,7 @@ import Home from "./Home";
 import AllBids from "./AllBids"
 import PlaceBid from "./PlaceABid"
 import AllProducts from "./Listings"
-import FinishAuction from "./EndAucion"
+import FinishAuction from "./EndAuction"
 import HaltAuction from "./HaltAuction"
 import ProductRequest from "./AddProduct"
 import NavigationBar from "./NavigationBar"
