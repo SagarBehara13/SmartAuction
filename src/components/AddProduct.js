@@ -1,12 +1,29 @@
 import Web3 from 'web3';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Spinner, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Spinner, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 import Auction from '../abis/Auction.json'
 
 
 class ProductRequest extends Component{
+
+  constructor(props){
+    super(props)
+    this.state = {
+      account : '',
+      productCount: 0,
+      products: [],
+      loading: true,
+      selectedFile: null
+    }
+
+    this.loadWeb3 = this.loadWeb3.bind(this)
+    this.createProduct = this.createProduct.bind(this)
+    this.submitForm = this.submitForm.bind(this)
+    this.uplaodFile = this.uploadFile.bind(this)
+    this.onFileChange = this.onFileChange.bind(this)
+  }
 
   async componentWillMount(){
     await this.loadWeb3()
@@ -57,17 +74,48 @@ class ProductRequest extends Component{
     }
   }
 
-  constructor(props){
-    super(props)
-    this.state = {
-      account : '',
-      productCount: 0,
-      products: [],
-      loading: true
-    }
+  onFileChange = event => {
+    // Update the state
+    this.setState({ selectedFile: event.target.files[0] });
+  }
 
-    this.loadWeb3 = this.loadWeb3.bind(this)
-    this.createProduct = this.createProduct.bind(this)
+  uploadFile = async file => {
+    const formData = new FormData();
+
+    formData.append(
+      "image",
+      file,
+      file.name
+    );
+
+    const response = await fetch('/upload', {
+      method: 'POST',
+      body: formData,
+    })
+
+    return await response.json()
+  }
+
+  submitForm = async (event) => {
+    event.preventDefault()
+
+    const name = this.productName.value
+    const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether') || 0
+    const ownerName = this.ownerName.value
+    const contactNumber = this.contactNumber.value
+    const startDate = this.startDate.value
+    const endDate = this.endDate.value
+    const category = this.category.value
+    const description = this.description.value
+    const shortDescription = this.shortDescription.value
+    const file = this.state.selectedFile
+
+    const isUploaded = await this.uploadFile(file)
+
+    if (isUploaded.success)
+      this.createProduct(price, name, ownerName, contactNumber, isUploaded.data.fileUrl, startDate, endDate, category, description, shortDescription)
+    else
+      window.alert('File upload failed')
   }
 
   createProduct(
@@ -82,7 +130,6 @@ class ProductRequest extends Component{
     _description,
     _shortDescription
   ) {
-    this.setState({ loading: true })
     this.state.auction.methods.createProduct(
       _initialSellPrice,
       _productName,
@@ -96,36 +143,21 @@ class ProductRequest extends Component{
       _shortDescription
     ).send({ from: this.state.account })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+      this.props.history.push('/listing')
     })
   }
 
   render() {
     return(
       <div className="container-fluid">
-        <div className="row align-items-center justify-content-center listings" id="addProduct">
+        <div className="row align-items-center justify-content-center add-products" id="addProduct">
           <h2 className="col-12">Create auctions for your products</h2>
           {
             this.state.loading ? (
               <Spinner className="spinner" />
             ) : (
-              <div className="col-12 listings-list">
-                <Form onSubmit={(event) => {
-                  event.preventDefault()
-                  const name = this.productName.value
-                  const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether') || 0
-                  const ownerName = this.ownerName.value
-                  const contactNumber = this.contactNumber.value
-                  const objectImage = this.objectImage.value
-                  const startDate = this.startDate.value
-                  const endDate = this.endDate.value
-                  const category = this.category.value
-                  const description = this.description.value
-                  const shortDescription = this.shortDescription.value
-
-                  console.log(price, name, ownerName, contactNumber, objectImage, startDate, endDate, category, description, shortDescription);
-                  this.createProduct(price, name, ownerName, contactNumber, objectImage, startDate, endDate, category, description, shortDescription)
-                }} className="main-form">
+              <div className="col-12 add-product-container table-bordered">
+                <Form onSubmit={this.submitForm} className="main-form">
                   <FormGroup>
                     <Label htmlFor="name" className="form-label">Object Name</Label>
                     <Input type="text" id="productName" name="name"
@@ -151,10 +183,13 @@ class ProductRequest extends Component{
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label htmlFor="name" className="form-label">Object Image</Label>
-                    <Input type="text" id="objectImage" name="name"
-                        innerRef={(input) => this.objectImage = input} placeholder="Insert Image"
-                    />
+                    <Label for="object-image">Object Image</Label>
+                    <Input type="file" name="image" id="image"
+                    onChange={this.onFileChange}
+                     />
+                    <FormText color="muted">
+                      NOTE: File has to be image only. Valid file types are: jpg, JPG, jpeg, JPEG, png, PNG, gif, GIF only!
+                    </FormText>
                   </FormGroup>
                   <FormGroup>
                     <Label htmlFor="name" className="form-label">Starting Period for Bids</Label>
@@ -186,7 +221,10 @@ class ProductRequest extends Component{
                         innerRef={(input) => this.shortDescription = input} placeholder="Enter some catchy pharse related to object"
                     />
                   </FormGroup>
-                  <Button className="form-btn" type="submit" value="submit" color="primary">Submit</Button>
+                  <br />
+                  <Button className="add-product-button" type="submit" value="submit" color="primary">
+                    Create auction
+                  </Button>
                 </Form>
               </div>
             )

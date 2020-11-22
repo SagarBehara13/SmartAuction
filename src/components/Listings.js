@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
 import { withRouter } from 'react-router-dom';
-import { UncontrolledCollapse, Media, Badge, Button, Table, Spinner,
+import { UncontrolledCollapse, Media, Badge, Button, Spinner,
   Card, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 import * as _ from 'underscore'
@@ -69,8 +69,6 @@ class Listings extends Component{
           products: [...this.state.products, { ...product, ...productDetail }]
         })
       }
-
-      console.log('Product', this.state.products[0])
 
       this.setState({ loading: false })
 
@@ -152,7 +150,9 @@ class Listings extends Component{
                                 <br />
                                 {!product.sold ? 'Current' : 'Sold'} price: {this.convertWeiToEth(product.currentPrice)} MATIC
                               </CardText>
-                              {!product.sold ? <Button className="start-bidding-button">Bid now</Button> : null}
+                              {!product.sold ? <Button className="start-bidding-button" onClick={() => {
+                                this.props.history.push({pathname: '/placeBid', state: {id: product.id }})
+                              }}>Bid now</Button> : null}
                             </CardBody>
                           </Card>
                         </UncontrolledCollapse>
