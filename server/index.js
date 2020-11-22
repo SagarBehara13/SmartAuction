@@ -3,6 +3,8 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser= require('body-parser')
 const multer = require('multer')
+const cors = require('cors')
+
 
 const verifyFileType = require('./middleware/verifyFileType')
 
@@ -10,6 +12,7 @@ const verifyFileType = require('./middleware/verifyFileType')
 const app = express()
 
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/uploads'));
 
@@ -19,7 +22,9 @@ const storage = multer.diskStorage({
     cb(null, 'uploads')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    const fileName = file.originalname.split('.')
+
+    cb(null, fileName[0] + `-${Date.now()}.${fileName[1]}`)
   }
 })
 
