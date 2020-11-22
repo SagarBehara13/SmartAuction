@@ -74,7 +74,7 @@ class HaltAuction extends Component{
     this.state.auction.methods.haltProductAuction(_productId)
     .send({ from: this.state.account })
     .once('receipt', (receipt) => {
-    this.setState({ loading: false })
+      this.props.history.push('/listing')
     })
   }
 

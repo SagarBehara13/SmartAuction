@@ -56,7 +56,7 @@ class AllBids extends Component{
 
       for(var i = 1; i <= bidsCount; i++){
         const allBid = await auction.methods.allbids(i).call()
-        console.log('allbids', allBid);
+
         this.setState({
           bids: [...this.state.bids, allBid]
         })

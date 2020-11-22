@@ -76,7 +76,7 @@ class PlaceBid extends Component{
     this.state.auction.methods.bid(_productId, _amount, _name, _contact)
     .send({ from: this.state.account })
     .once('receipt', (receipt) => {
-      this.setState({ loading: false })
+      this.props.history.push('/allBids')
     })
   }
 

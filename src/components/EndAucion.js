@@ -74,7 +74,7 @@ class EndAuction extends Component{
     this.state.auction.methods.finishAuction(_productId)
     .send({ from: this.state.account })
     .once('receipt', (receipt) => {
-    this.setState({ loading: false })
+      this.props.history.push('/listing')
     })
   }
 

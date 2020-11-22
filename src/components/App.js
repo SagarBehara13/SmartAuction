@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from '../logo.png';
-import Main from './Main'
-import './App.css';
 import { BrowserRouter } from 'react-router-dom';
+
+import './App.css';
+import Main from './Main'
+
 
 class App extends Component {
   render() {
@@ -15,5 +16,6 @@ class App extends Component {
     )
   }
 }
+
 
 export default App;
