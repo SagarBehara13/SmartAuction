@@ -1,17 +1,149 @@
-/* Styles go here */
+/** Import font **/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap");
+
+/** Global settings and variables **/
+:root {
+  --blue: blue;
+  --white: white;
+  --gray: lightgray;
+  --font-weight-regular: 500;
+  --font-weight-semibold: 700;
+  --font-weight-bold: 900;
+  --section-margins: 4rem 1rem;
+  --section-padding: 2rem;
+}
+
+/** Styles **/
+html,
+body {
+  font-size: 100%;
+  font-family: "Montserrat", sans-serif;
+  font-weight: var(--font-weight-regular);
+}
+
 * a {
   text-decoration: none;
 }
 
-.navbar-custom {
-  display: flex;
-  padding: 10px 20px 10px 20px;
-  background: black;
+.navbar-colors {
+  font-weight: var(--font-weight-semibold);
+  background-color: var(--blue);
+  color: var(--gray);
 }
 
-.navbar-contain {
+.navbar-toggler-colors {
+  color: var(--gray);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(211, 211, 211, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.navbar-toggler-colors:hover {
+  color: var(--white);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-colors:hover {
+  color: var(--white);
+}
+
+.header {
+  margin: var(--section-margins);
+  padding: var(--section-margins);
+}
+
+.header-img {
+  max-width: 100%;
+  height: 50vh;
+  max-height: 50vh;
+  background: url("../images/header.jpg"),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.75),
+      transparent
+    );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.start-bidding-button {
+  background-color: var(--blue);
+  color: var(--gray);
+  padding: 1rem;
+  border-radius: 5rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.start-bidding-button:hover {
+  background-color: var(--blue);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  box-shadow: 1px -1px 0.5px var(--blue);
+}
+
+.listings {
+  margin: var(--section-margins);
+  padding: var(--section-padding);
+}
+
+.listings-list {
+  margin: 2rem 0rem;
+  max-width: 100%;
+}
+
+.spinner {
+  margin-top: 5rem;
+  width: 4rem;
+  height: 4rem;
+  padding: 2rem;
+  color: var(--blue);
+}
+
+.media {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  box-shadow: 1px 1px 10px var(--gray);
+  text-align: left;
+}
+
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
+}
+
+.media-img-container {
+  height: 20vh;
+  max-height: 20vh;
+  width: 17vw;
+  max-width: 17vw;
+  padding: 0rem 1rem;
+}
+
+.media-img {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.NavigationBar-custom {
+  display: flex;
+  padding: 0.5rem 1rem;
+  background: var(--black);
+}
+
+.NavigationBar-contain {
   display: flex;
   align-items: center;
+}
+
+.product-collapser {
+  border: none;
+  margin-bottom: 1rem;
 }
 
 .logo-app {

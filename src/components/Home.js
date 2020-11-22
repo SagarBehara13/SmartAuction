@@ -1,16 +1,20 @@
 import React from 'react';
-import banner from '../images/banner.png'
+
 
 function Home (){
   return(
-    <div className='home-container'>
-      <div className="home-image-container">
-        <img src={banner} className='banner'/>
-      </div>
-      <div className='welcome'>
-        <div className='welcome-container'>
-            <p className='welcome-msg'>Welcome to Smart Auction</p>
-            <a href='/listing' className='start-bidding'>Start Bidding</a>
+    <div className='container-fluid'>
+      <div className='row header align-items-center justify-content-center'>
+        <div className='.d-sm-none .d-md-block col-md-6 header-img'>
+        </div>
+        <div className='col-sm-12 offset-md-1 col-md-5'>
+          <div className="col-12">
+            <h4>Welcome,</h4>
+            <h2>Smart Auction</h2>
+            <h4>Utlizing blockchain for an secure and decentralized auction</h4>
+            <br />
+            <a href='/listing' className='start-bidding-button'>Start Bidding</a>
+          </div>
         </div>
       </div>
     </div>

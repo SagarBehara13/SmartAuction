@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import NavBar from "./navbar";
+import NavigationBar from "./NavigationBar";
 import Home from "./Home";
 import Auction from '../abis/Auction.json'
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
