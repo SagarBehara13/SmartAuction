@@ -7,6 +7,7 @@ const HDWalletProvider = require('truffle-hdwallet-provider');
 
 
 const privateKey = process.env.PRIVATE_KEY
+const kovanUrl = process.env.KOVAN_URL
 
 
 module.exports = {
@@ -15,6 +16,15 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*" // Match any network id
+    },
+    kovan: {
+      provider: function() {
+        return new HDWalletProvider(
+          [privateKey],
+          kovanUrl
+        )
+      },
+      network_id: 42
     },
     matic: {
       provider: function() {

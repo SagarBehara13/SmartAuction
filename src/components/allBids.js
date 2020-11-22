@@ -7,7 +7,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 
 class AllBids extends Component{
-    
+
     async componentWillMount(){
         await this.loadWeb3()
         await this.loadBlockchainData()
@@ -30,18 +30,18 @@ class AllBids extends Component{
         const web3 = window.web3
         const accounts = await web3.eth.getAccounts()
         this.setState({ account: accounts[0] })
-    
+
         const networkId = await web3.eth.net.getId()
         const networkData = Auction.networks[networkId]
-    
+
         if(networkData){
           const auction = new web3.eth.Contract(Auction.abi, networkData.address)
           this.setState({ auction })
-    
+
           const bidsCount = await auction.methods.bidsCount().call()
-          
+
           this.setState({ bidsCount })
-    
+
           for(var i = 1; i <= bidsCount; i++){
             const allBid = await auction.methods.allbids(i).call()
             console.log('allbids', allBid);
@@ -49,9 +49,9 @@ class AllBids extends Component{
               bids: [...this.state.bids, allBid]
             })
           }
-    
+
           this.setState({ loading: false })
-          
+
         } else {
           window.alert("Auction contract is not deployed to detected network")
         }
@@ -65,7 +65,7 @@ class AllBids extends Component{
           bids: [],
           loading: true
         }
-    
+
         this.loadWeb3 = this.loadWeb3.bind(this)
     }
 
@@ -86,9 +86,6 @@ class AllBids extends Component{
                                 <p className="price">amount: { window.web3.utils.fromWei(request.amount.toString(), 'Ether') } Matic</p>
                                 <p className="price">auctioner Address: { request.sellerAddress }</p>
                                 <p className="price">bidder Address: { request.bidderAddress } </p>
-                                </div>
-                                <div className="body-card">
-                                <CardText>Description: { request.shortDescription }</CardText>
                                 </div>
                             </div>
                             </Col>

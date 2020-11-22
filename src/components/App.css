@@ -1,141 +1,181 @@
 /* Styles go here */
-.navbar-custom{
-    display: flex;
-    padding: 10px 20px 10px 20px;
-    background: black;
-    /*#84ceeb*/
-    /*#5ab9ea*/
-    /*#c1c8e4*/
-    /*#8860d0*/
+* a {
+  text-decoration: none;
 }
-.navbar-contain{
-    display: flex;
-    align-items: center;
+
+.navbar-custom {
+  display: flex;
+  padding: 10px 20px 10px 20px;
+  background: black;
 }
-.logo-app{
-    height: 40px;
-    width: 40px;
-    /*padding: 10px 20px 10px 20px;*/
-    /*padding: 10px;*/
+
+.navbar-contain {
+  display: flex;
+  align-items: center;
 }
-.app-name a{
-    font-size: 15px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
-    padding-left: 20px;
-    font-family: Georgia;
+
+.logo-app {
+  height: 40px;
+  width: 40px;
 }
-.brand-menu{
-    display: flex;
-    align-items: center;
-    flex: 1;
-    z-index: 10;
+
+.app-name a {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  padding-left: 20px;
+  font-family: Georgia;
 }
-.main-menu{
-    display: flex;
-    align-items: center;
+
+.brand-menu {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  z-index: 10;
 }
-.main-menu div{
-    z-index: 10;
+
+.main-menu {
+  display: flex;
+  align-items: center;
 }
-.main-menu div a{
-    padding: 0 10px 0 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.1s ease-in-out;
-    text-decoration: none;
+
+.main-menu div {
+  z-index: 10;
 }
-.main-menu div a:hover{
-    color: #5ab9ea;
+
+.main-menu div a {
+  padding: 0 10px 0 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  text-decoration: none;
 }
-.banner{
-    height: 100vh;
-    width: 100vw;
+
+.main-menu div a:hover {
+  color: #5ab9ea;
 }
-.welcome{
-    position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.banner {
+  height: 100vh;
+  width: 100%;
 }
-.welcome-msg{
-    color: white;
-    font-size: 80px;
-    text-shadow: 1px 1px 5px black;
-    margin-top: -20px;
+
+.home-container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
-.welcome-container{
-    text-align: center;
+
+.home-container .home-img-container {
+  width: 100%;
+  max-width: 100%;
 }
-.start-bidding{
-    background-color: #5ab9ea;
-    color: white;
-    font-size: 20px;
-    border:1px solid #5ab9ea;
-    padding: 5px 20px 5px 20px;
-    transition: 0.2s ease-in-out;
+
+.welcome {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.start-bidding:hover{
-    background-color: transparent;
-    color: #5ab9ea;
+
+.welcome-msg {
+  color: white;
+  font-size: 80px;
+  text-shadow: 1px 1px 5px black;
+  margin-top: -20px;
+}
+
+.welcome-container {
+  text-align: center;
+}
+
+.start-bidding {
+  background-color: #5ab9ea;
+  color: white;
+  font-size: 20px;
+  border: 1px solid #5ab9ea;
+  border-radius: 8px;
+  padding: 10px 15px;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+}
+
+.start-bidding:hover {
+  background-color: transparent;
+  color: #5ab9ea;
+  text-decoration: none;
 }
 
 .explore-main {
-    min-height: 100vh;
-  }
-  .tabs-main-container {
-    margin-top: 20px;
-  }
-  .custom-card {
-    margin-top: 10px;
-    border: 1px solid #ffffff80;
-    padding: 10px;
-    border-radius: 20px;
-    box-shadow: 1px 1px 5px #ffffff70;
-    background-color: #ff8c0015;
-  }
-  .header-card {
-    display: flex;
-    align-items: center;
-  }
-  .card-image {
-    border-radius: 50%;
-  }
-  .header-card-content {
-    padding-left: 20px;
-    padding-right: 10px;
-  }
-  .header-card-content .name {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
-    color: white;
-  }
-  .header-card-content .price {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
-    color: white;
-  }
-  .donate-btn {
-    padding-top: 2px !important;
-    padding-bottom: 2px !important;
-    border-radius: 10px !important;
-    width: 150px;
-    background-color: #ff8c0010 !important;
-    border: 1px solid darkorange !important;
-    cursor: pointer !important;
-    color: darkorange !important;
-  }
-  .donate-btn:hover {
-    background-color: darkorange !important;
-    color: white !important;
-  }
-  .body-card {
-    margin-top: 10px;
-    color: white;
-  }
+  min-height: 100vh;
+}
+
+.tabs-main-container {
+  margin-top: 20px;
+}
+
+.custom-card {
+  margin-top: 10px;
+  border: 1px solid #ffffff80;
+  padding: 10px;
+  border-radius: 20px;
+  color: black;
+  box-shadow: 1px 1px 5px #ffffff70;
+  background-color: #ff8c0015;
+}
+
+.header-card {
+  display: flex;
+  align-items: center;
+}
+
+.card-image {
+  border-radius: 50%;
+}
+
+.header-card-content {
+  padding-left: 20px;
+  padding-right: 10px;
+  color: black;
+}
+
+.header-card-content .name {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.header-card-content .price {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.donate-btn {
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  border-radius: 10px !important;
+  width: 150px;
+  background-color: #ff8c0010 !important;
+  border: 1px solid darkorange !important;
+  cursor: pointer !important;
+  color: darkorange !important;
+}
+
+.donate-btn:hover {
+  background-color: darkorange !important;
+  color: black !important;
+}
+
+.body-card {
+  margin-top: 10px;
+  color: black;
+}

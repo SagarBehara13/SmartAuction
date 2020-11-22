@@ -7,7 +7,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardImg, CardSubtitle, CardText, Row, Col, CardBody, Form, FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
 
 class AllProducts extends Component{
-    
+
     async componentWillMount(){
         await this.loadWeb3()
         await this.loadBlockchainData()
@@ -30,18 +30,18 @@ class AllProducts extends Component{
         const web3 = window.web3
         const accounts = await web3.eth.getAccounts()
         this.setState({ account: accounts[0] })
-    
+
         const networkId = await web3.eth.net.getId()
         const networkData = Auction.networks[networkId]
-    
+
         if(networkData){
           const auction = new web3.eth.Contract(Auction.abi, networkData.address)
           this.setState({ auction })
-    
+
           const productCount = await auction.methods.productsCount().call()
-          
+
           this.setState({ productCount })
-    
+
           for(var i = 1; i <= productCount; i++){
             const product = await auction.methods.products(i).call()
             console.log('products', product);
@@ -49,9 +49,9 @@ class AllProducts extends Component{
               products: [...this.state.products, product]
             })
           }
-    
+
           this.setState({ loading: false })
-          
+
         } else {
           window.alert("Auction contract is not deployed to detected network")
         }
@@ -65,7 +65,7 @@ class AllProducts extends Component{
           products: [],
           loading: true
         }
-    
+
         this.loadWeb3 = this.loadWeb3.bind(this)
     }
 
@@ -88,11 +88,12 @@ class AllProducts extends Component{
                         <Col sm="12" md="6">
                             <div className="custom-card">
                             <div className="header-card">
-                                <img width="130px" height="130px" src={ request.productImage } alt="Card cap" className="card-image"/>
+                                <img width="130px" height="130px" src={ request.id === '1' ? 'https://images-na.ssl-images-amazon.com/images/I/31Yyz9t8GBL.jpg' : request.productImage } alt="Card cap" className="card-image"/>
                                 <div className="header-card-content">
-                                <p className="name">Name: { request.productName }</p>
+                                <p className="name">Product id: {request.id}</p>
+                                <p className="name">Name: { request.id === '1' ? 'Cricket bat' : request.productName }</p>
                                 <p className="price">Current Bid Price: { window.web3.utils.fromWei(request.currentPrice.toString(), 'Ether') } Matic</p>
-                                
+
                                     {
                                     !request.sold
                                     ? <Button
@@ -101,8 +102,7 @@ class AllProducts extends Component{
                                         id={request.id}
                                         value={request.currentPrice}
                                         onClick={(event) => {
-                                            console.log(event.target)
-                                            //props.fullFillRequest(event.target.id, event.target.value)
+                                            this.props.history.push({ pathname: "/placeBid",state: { id : request.id }})
                                         }}
                                         >
                                     Bid</Button>
