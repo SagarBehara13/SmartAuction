@@ -63,6 +63,8 @@ class EndAuction extends Component{
         })
       }
 
+      console.log(this.state.products)
+
       this.setState({ loading: false })
 
     } else {
