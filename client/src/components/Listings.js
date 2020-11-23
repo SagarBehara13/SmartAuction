@@ -18,6 +18,8 @@ class Listings extends Component{
       account : '',
       productCount: 0,
       products: [],
+      bidsCount: 0,
+      bids: [],
       loading: true
     }
 
@@ -70,6 +72,18 @@ class Listings extends Component{
         })
       }
 
+      const bidsCount = await auction.methods.bidsCount().call()
+
+      this.setState({ bidsCount })
+
+      for(var i = 1; i <= bidsCount; i++){
+        const allBid = await auction.methods.allbids(i).call()
+
+        this.setState({
+          bids: [...this.state.bids, allBid]
+        })
+      }
+
       this.setState({ loading: false })
 
     } else {
@@ -98,7 +112,13 @@ class Listings extends Component{
     return (
       <div className="container-fluid">
         <div className="row listings align-items-center justify-content-center">
-          <h2 className="col-12">Auctions for all products</h2>
+          <h2 className="col-12">
+            Auctions for all products
+            &nbsp;
+            <Badge className="badge" href="#" color="success">
+              Total {this.state.bidsCount} bids !!
+            </Badge>
+          </h2>
           {
             this.state.loading ? (
               <Spinner className="spinner" />
@@ -139,7 +159,7 @@ class Listings extends Component{
                                 #{product.category}
                                 &nbsp;
                                 <Badge className="badge" href="#" color="success">
-                                  {product.bidsCount} bids
+                                  {this.state.bids.filter(bid => bid.productId === product.id).length} bids
                                 </Badge>
                               </CardTitle>
                               <CardSubtitle tag="h6" className="mb-2 text-muted">
