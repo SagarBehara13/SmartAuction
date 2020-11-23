@@ -82,10 +82,14 @@ class ProductRequest extends Component{
   uploadFile = async file => {
     const formData = new FormData();
 
+    const fileNameSplittedList = file.name.split('.')
+    const fileNameToSave =
+      `${fileNameSplittedList[0]}-${Date.now()}.${fileNameSplittedList[fileNameSplittedList.length - 1]}`
+
     formData.append(
       "image",
       file,
-      file.name
+      fileNameToSave
     );
 
     const response = await fetch('/upload', {
