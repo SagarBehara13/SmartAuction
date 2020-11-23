@@ -72,12 +72,18 @@ class EndAuction extends Component{
     }
   }
 
-  finishAuction( _productId){
-    this.state.auction.methods.finishAuction(_productId)
-    .send({ from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.props.history.push('/listing')
-    })
+  async finishAuction( _productId){
+    const product = this.state.products.filter(product => product.id === _productId)
+
+    if (!product.length) window.alert('Could not claim prize, No such product found.')
+    else if (!product[0].sold) window.alert("This product not yet sold")
+    else if (this.state.account !== product[0].ownerWalletAddress) window.alert("This address has not won the prize for this product")
+    else
+      this.state.auction.methods.finishAuction(_productId)
+      .send({ from: this.state.account, value: product[0].currentPrice})
+      .once('receipt', (receipt) => {
+        this.props.history.push('/listing')
+      })
   }
 
   render() {
@@ -90,20 +96,22 @@ class EndAuction extends Component{
               <Spinner className="spinner" />
             ) : (
               <div className="col-12 hault-auction-container table-bordered">
-              <Form onSubmit={(event) => {
-                  event.preventDefault()
-                  const productId = this.productId.value
-                  this.finishAuction(productId)
-              }} className="main-form">
-                <FormGroup>
-                    <Label htmlFor="name" className="form-label">Product Id</Label>
-                    <Input type="text" id="productId" name="name"
-                        innerRef={(input) => this.productId = input} placeholder="Enter the object id"
-                    />
-                </FormGroup>
-                <br />
-                <Button className="close-auction-button" type="submit" value="submit" color="primary">Claim prize</Button>
-              </Form>
+                <Form onSubmit={(event) => {
+                    event.preventDefault();
+
+                    const productId = this.productId.value
+
+                    this.finishAuction(productId)
+                }} className="main-form">
+                  <FormGroup>
+                      <Label htmlFor="name" className="form-label">Product Id</Label>
+                      <Input type="text" id="productId" name="name"
+                          innerRef={(input) => this.productId = input} placeholder="Enter the object id"
+                      />
+                  </FormGroup>
+                  <br />
+                  <Button className="close-auction-button" type="submit" value="submit" color="primary">Claim prize</Button>
+                </Form>
               </div>
             )
           }

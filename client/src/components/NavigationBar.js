@@ -21,7 +21,7 @@ const NavigationBar = (props) => {
     <div>
       <Navbar className="navbar-colors" expand="md">
         <NavbarBrand className="navbar-colors" href="/">
-          <img src={logo} className="logo-app" alt="logo" />&nbsp; Smart Auction
+          <img src={logo} className="logo-app" alt="logo" />&nbsp; Decentralized Auction
         </NavbarBrand>
         <NavbarToggler className="navbar-toggler-colors" onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

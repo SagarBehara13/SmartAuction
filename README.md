@@ -1,4 +1,4 @@
-<h1 align="center">Smart Auction</h1>
+<h1 align="center">Decentralized Auction</h1>
 <h2 align="center">An decentralized platform for Auction via the Matic blockchain.</h2><br><br>
   •	Online Auction System was implemented using Matic Blockchain<br><br>
 	•	Immutability of each bid was being registered<br><br>

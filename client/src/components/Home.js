@@ -10,7 +10,7 @@ function Home (){
         <div className='col-sm-12 offset-md-1 col-md-5'>
           <div className="col-12">
             <h4>Welcome,</h4>
-            <h2>Smart Auction</h2>
+            <h2><b>Decentralized Auction</b></h2>
             <h4>Utlizing blockchain for an secure and decentralized auction</h4>
             <br />
             <a href='/listing' className='start-bidding-button'>Start Bidding</a>

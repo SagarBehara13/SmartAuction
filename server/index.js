@@ -69,7 +69,7 @@ app.post('/upload', (req, res, next) => {
 app.get('/', function(req, res) {
   res.json({
     success: true,
-    server: 'Smart auction server',
+    server: 'Decentralized auction server',
     status: 'Server is live'
   })
 })

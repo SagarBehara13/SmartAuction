@@ -1419,12 +1419,12 @@
     "80001": {
       "events": {},
       "links": {},
-      "address": "0x5FC18C74d973FF013A19c94578F427EEf21ACf33",
-      "transactionHash": "0xe25963442ce7abcb8208ffca2fe643ae1de8afafcd5fb4622471b254e090ff3a"
+      "address": "0xc22faEd72998136e0c2eA48DF4D231137cFC6557",
+      "transactionHash": "0xd901977b064ed0b56b15ea6d34342e7da158cbf5555e1296ae2ee86a78041949"
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-23T07:24:46.021Z",
+  "updatedAt": "2020-11-23T10:26:30.317Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
