@@ -26,12 +26,12 @@ We aim to change that by simplifying the interaction between users and the decen
 
 What Decentralized Auction achieved ?
 -----------
-	-	Immutability of each bid was being registered
-	-	Tracking and verification of bidding history was easier
-	-	No bid cancellation’ feature was enabled to ensure fraud free Auction
-	-	Smart contracts (decentralized applications) written in Solidity
-	-	Secured & transparent ledger system to encompass all bidding transactions
-	-	Person who is auctioning the product is ready to accept matic tokens as payment
+	- Immutability of each bid was being registered
+	- Tracking and verification of bidding history was easier
+	- No bid cancellation’ feature was enabled to ensure fraud free Auction
+	- Smart contracts (decentralized applications) written in Solidity
+	- Secured & transparent ledger system to encompass all bidding transactions
+	- Person who is auctioning the product is ready to accept matic tokens as payment
 
 Setup
 =====
