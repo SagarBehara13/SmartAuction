@@ -26,12 +26,11 @@ We aim to change that by simplifying the interaction between users and the decen
 
 What Decentralized Auction achieved ?
 -----------
-	- Immutability of each bid was being registered
-	- Tracking and verification of bidding history was easier
-	- No bid cancellation’ feature was enabled to ensure fraud free Auction
-	- Smart contracts (decentralized applications) written in Solidity
+	- Immutability of each bid that is registered
+	- Tracking and verification of bidding history made easier
+	- No bid cancellation feature enabled to ensure fraud free Auction
+  - The transaction of funds are peer to peer
 	- Secured & transparent ledger system to encompass all bidding transactions
-	- Person who is auctioning the product is ready to accept matic tokens as payment
 
 Setup
 =====
@@ -52,3 +51,18 @@ $ yarn install
 $ yarn intall-all
 $ yarn start
 ```
+
+Additional support
+==================
+
+The smart contracts are deployed onto Matic Mumbai testnet.
+[Read more about matic network setup](https://docs.matic.network/docs/develop/metamask/config-matic
+)
+
+We are ready to collaborate and learn with open source communities.
+
+Contact us at- sagarbehara13@gmail.com & yashagrawal18@outlook.com
+
+Donations
+=========
+If you like the project, you can donate some eth to the below address- 0x931877aDC094EdA6D6fE625CbBC3a5e134540d55
