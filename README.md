@@ -26,13 +26,11 @@ We aim to change that by simplifying the interaction between users and the decen
 
 What Decentralized Auction achieved ?
 ------------------------------------
-```
-	- Immutability of each bid that is registered
-	- Tracking and verification of bidding history made easier
-	- No bid cancellation feature enabled to ensure fraud free Auction
+  - Immutability of each bid that is registered
+  - Tracking and verification of bidding history made easier
+  - No bid cancellation feature enabled to ensure fraud free Auction
   - Secured & transparent ledger system to encompass all bidding transactions
   - The transaction of funds are peer to peer
-```
 
 Setup
 =====
