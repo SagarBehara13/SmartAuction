@@ -11,6 +11,9 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "cd server && yarn start",
-    "start": "concurrently \"yarn client\" \"yarn server\""
+    "start": "concurrently \"yarn client\" \"yarn server\"",
+    "install-client": "cd client && yarn install",
+    "install-server": "cd server && yarn install",
+    "install-all": "concurrently \"yarn install-client\" \"yarn install-server\""
   }
 }
