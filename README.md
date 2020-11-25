@@ -48,7 +48,7 @@ $ mkdir decentralized-auction
 $ cd decentralized-auction
 $ git clone git@github.com:SagarBehara13/SmartAuction.git .
 $ yarn install
-$ yarn intall-all
+$ yarn install-all
 $ yarn start
 ```
 
